@@ -48,14 +48,14 @@ public class JPAConfiguration {
         
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUsername( "root" );
-        dataSource.setPassword( "" );
+        dataSource.setPassword( "jkato" );
         dataSource.setUrl( "jdbc:mysql://localhost:3306/casadocodigo" );
         dataSource.setDriverClassName( "com.mysql.jdbc.Driver" );
         
         factoryBean.setDataSource( dataSource );
         
         Properties props = new Properties();
-        props.setProperty( "hibernate.Dialect" , "org.hibernate.dialect.MySQL5Dialect" );
+        props.setProperty( "hibernate.dialect" , "org.hibernate.dialect.MySQL5InnoDBDialect" );
         props.setProperty( "hibernate.show_sql" , "true" );
         props.setProperty( "hibernate.hbm2ddl.auto" , "update" );
         
