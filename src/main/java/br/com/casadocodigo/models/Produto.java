@@ -8,6 +8,14 @@
 
 package br.com.casadocodigo.models;
 
+import java.util.List;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /** 
  * DOCUMENTAÇÃO DA CLASSE <br>
  * ---------------------- <br>
@@ -21,12 +29,59 @@ package br.com.casadocodigo.models;
  * LISTA DE CLASSES INTERNAS: <br>
  */
 
+@Entity
 public class Produto {
+    @Id 
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
     
     private String titulo;
     private String descricao;
     private Integer paginas;
     
+    @ElementCollection
+    private List<Preco> precos;
+    
+    
+    /**
+     * Método de recuperação do campo id
+     *
+     * @return valor do campo id
+     */
+    public Integer getId () {
+        return this.id;
+    }
+
+    
+    /**
+     * Valor de id atribuído a id
+     *
+     * @param id Atributo da Classe
+     */
+    public void setId ( Integer id ) {
+        this.id = id;
+    }
+
+    
+    /**
+     * Método de recuperação do campo precos
+     *
+     * @return valor do campo precos
+     */
+    public List < Preco > getPrecos () {
+        return this.precos;
+    }
+
+    
+    /**
+     * Valor de precos atribuído a precos
+     *
+     * @param precos Atributo da Classe
+     */
+    public void setPrecos ( List < Preco > precos ) {
+        this.precos = precos;
+    }
+
     /**
      * Método de recuperação do campo titulo
      *
@@ -81,6 +136,21 @@ public class Produto {
         this.paginas = paginas;
     }
 
+
+    /** 
+     * TODO Descrição do Método
+     * @return
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString () {
+        StringBuilder builder = new StringBuilder();
+        builder.append( "Produto [id=" ).append( this.id ).append( ", titulo=" ).append( this.titulo ).append( ", descricao=" ).append( this.descricao ).append( ", paginas=" ).append( this.paginas )
+                .append( ", precos=" ).append( this.precos ).append( "]" );
+        return builder.toString();
+    }
+
+
     /** 
      * TODO Descrição do Método
      * @return
@@ -91,10 +161,13 @@ public class Produto {
         final int prime = 31;
         int result = 1;
         result = prime * result + ( ( this.descricao == null ) ? 0 : this.descricao.hashCode() );
+        result = prime * result + ( ( this.id == null ) ? 0 : this.id.hashCode() );
         result = prime * result + ( ( this.paginas == null ) ? 0 : this.paginas.hashCode() );
+        result = prime * result + ( ( this.precos == null ) ? 0 : this.precos.hashCode() );
         result = prime * result + ( ( this.titulo == null ) ? 0 : this.titulo.hashCode() );
         return result;
     }
+
 
     /** 
      * TODO Descrição do Método
@@ -117,11 +190,23 @@ public class Produto {
         }
         else if ( ! this.descricao.equals( other.descricao ) )
             return false;
+        if ( this.id == null ) {
+            if ( other.id != null )
+                return false;
+        }
+        else if ( ! this.id.equals( other.id ) )
+            return false;
         if ( this.paginas == null ) {
             if ( other.paginas != null )
                 return false;
         }
         else if ( ! this.paginas.equals( other.paginas ) )
+            return false;
+        if ( this.precos == null ) {
+            if ( other.precos != null )
+                return false;
+        }
+        else if ( ! this.precos.equals( other.precos ) )
             return false;
         if ( this.titulo == null ) {
             if ( other.titulo != null )
@@ -132,19 +217,6 @@ public class Produto {
         return true;
     }
 
-    /** 
-     * TODO Descrição do Método
-     * @return
-     * @see java.lang.Object#toString()
-     */
-    @Override
-    public String toString () {
-        StringBuilder builder = new StringBuilder();
-        builder.append( "Produto [titulo=" ).append( this.titulo ).append( ", descricao=" ).append( this.descricao ).append( ", paginas=" ).append( this.paginas ).append( "]" );
-        return builder.toString();
-    }
-
-    
     
 
 }
