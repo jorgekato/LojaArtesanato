@@ -7,6 +7,8 @@
  */
 package br.com.casadocodigo.DAO;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -27,21 +29,24 @@ import br.com.casadocodigo.models.Produto;
  * <br>
  * LISTA DE CLASSES INTERNAS: <br>
  */
-
 @Repository
 @Transactional
 public class ProdutoDAO {
-    
+
     @PersistenceContext
     private EntityManager em;
 
     /**
      * 
      * Método resposável por persistir os dados.
+     * 
      * @param produto
      */
     public void gravar ( Produto produto ) {
         em.persist( produto );
-    
+    }
+
+    public List < Produto > find () {
+        return em.createQuery( "select p from Produto p" , Produto.class ).getResultList();
     }
 }
