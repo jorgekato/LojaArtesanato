@@ -1,5 +1,8 @@
 package br.com.casadocodigo.conf;
 
+import javax.servlet.Filter;
+
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -37,5 +40,18 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
     @Override
     protected String[] getServletMappings () {
         return new String[] { "/" };
+    }
+
+    /**
+     * Método que filtra os caracteres para ser em UTF-8
+     * 
+     * @return
+     * @see org.springframework.web.servlet.support.AbstractDispatcherServletInitializer#getServletFilters()
+     */
+    @Override
+    protected Filter[] getServletFilters () {
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding( "UTF-8" );
+        return new Filter[] { encodingFilter };
     }
 }
