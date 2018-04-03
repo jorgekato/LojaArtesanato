@@ -29,5 +29,43 @@ import javax.persistence.Embeddable;
 public class Preco {
     private BigDecimal valor;
     private TipoPreco tipo;
+    
+    /**
+     * Método de recuperação do campo valor
+     *
+     * @return valor do campo valor
+     */
+    public BigDecimal getValor () {
+        return this.valor;
+    }
+    
+    /**
+     * Valor de valor atribuído a valor
+     *
+     * @param valor Atributo da Classe
+     */
+    public void setValor ( BigDecimal valor ) {
+        this.valor = valor;
+    }
+    
+    /**
+     * Método de recuperação do campo tipo
+     *
+     * @return valor do campo tipo
+     */
+    public TipoPreco getTipo () {
+        return this.tipo;
+    }
+    
+    /**
+     * Valor de tipo atribuído a tipo
+     *
+     * @param tipo Atributo da Classe
+     */
+    public void setTipo ( TipoPreco tipo ) {
+        this.tipo = tipo;
+    }
+    
+    
 }
 
