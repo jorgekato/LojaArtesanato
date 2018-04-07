@@ -17,6 +17,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /** 
  * DOCUMENTAÇÃO DA CLASSE <br>
  * ---------------------- <br>
@@ -40,6 +42,8 @@ public class Produto {
     private String descricao;
     private Integer paginas;
     
+    
+    @DateTimeFormat
     private Calendar dataLancamento;
     
     @ElementCollection
