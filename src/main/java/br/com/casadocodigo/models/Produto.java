@@ -8,6 +8,7 @@
 
 package br.com.casadocodigo.models;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -38,6 +39,8 @@ public class Produto {
     private String titulo;
     private String descricao;
     private Integer paginas;
+    
+    private Calendar dataLancamento;
     
     @ElementCollection
     private List<Preco> precos;
@@ -137,6 +140,28 @@ public class Produto {
     }
 
 
+    
+    /**
+     * Método de recuperação do campo dataLancamento
+     *
+     * @return valor do campo dataLancamento
+     */
+    public Calendar getDataLancamento () {
+        return this.dataLancamento;
+    }
+
+
+    
+    /**
+     * Valor de dataLancamento atribuído a dataLancamento
+     *
+     * @param dataLancamento Atributo da Classe
+     */
+    public void setDataLancamento ( Calendar dataLancamento ) {
+        this.dataLancamento = dataLancamento;
+    }
+
+
     /** 
      * TODO Descrição do Método
      * @return
@@ -146,7 +171,7 @@ public class Produto {
     public String toString () {
         StringBuilder builder = new StringBuilder();
         builder.append( "Produto [id=" ).append( this.id ).append( ", titulo=" ).append( this.titulo ).append( ", descricao=" ).append( this.descricao ).append( ", paginas=" ).append( this.paginas )
-                .append( ", precos=" ).append( this.precos ).append( "]" );
+                .append( ", dataLancamento=" ).append( this.dataLancamento ).append( ", precos=" ).append( this.precos ).append( "]" );
         return builder.toString();
     }
 
@@ -160,6 +185,7 @@ public class Produto {
     public int hashCode () {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ( ( this.dataLancamento == null ) ? 0 : this.dataLancamento.hashCode() );
         result = prime * result + ( ( this.descricao == null ) ? 0 : this.descricao.hashCode() );
         result = prime * result + ( ( this.id == null ) ? 0 : this.id.hashCode() );
         result = prime * result + ( ( this.paginas == null ) ? 0 : this.paginas.hashCode() );
@@ -184,6 +210,12 @@ public class Produto {
         if ( getClass() != obj.getClass() )
             return false;
         Produto other = ( Produto ) obj;
+        if ( this.dataLancamento == null ) {
+            if ( other.dataLancamento != null )
+                return false;
+        }
+        else if ( ! this.dataLancamento.equals( other.dataLancamento ) )
+            return false;
         if ( this.descricao == null ) {
             if ( other.descricao != null )
                 return false;
@@ -217,6 +249,6 @@ public class Produto {
         return true;
     }
 
-    
+
 
 }
