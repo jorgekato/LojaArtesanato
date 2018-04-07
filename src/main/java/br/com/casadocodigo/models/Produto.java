@@ -49,6 +49,7 @@ public class Produto {
     @ElementCollection
     private List<Preco> precos;
     
+    private String sumarioPath;
     
     /**
      * Método de recuperação do campo id
@@ -163,6 +164,28 @@ public class Produto {
      */
     public void setDataLancamento ( Calendar dataLancamento ) {
         this.dataLancamento = dataLancamento;
+    }
+
+
+    
+    /**
+     * Método de recuperação do campo sumarioPath
+     *
+     * @return valor do campo sumarioPath
+     */
+    public String getSumarioPath () {
+        return this.sumarioPath;
+    }
+
+
+    
+    /**
+     * Valor de sumarioPath atribuído a sumarioPath
+     *
+     * @param sumarioPath Atributo da Classe
+     */
+    public void setSumarioPath ( String sumarioPath ) {
+        this.sumarioPath = sumarioPath;
     }
 
 
