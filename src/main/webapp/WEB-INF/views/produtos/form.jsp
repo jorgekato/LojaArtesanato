@@ -43,7 +43,7 @@
 		
 		<div>
 			<label>Sumário</label>
-			<input name="sumarioPath" type="file">
+			<input name="sumario" type="file">
 		</div>
 		<button type="submit">Cadastrar</button>
 	</form:form>
