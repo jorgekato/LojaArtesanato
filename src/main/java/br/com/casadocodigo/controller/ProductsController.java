@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -72,7 +73,7 @@ public class ProductsController {
     @RequestMapping ( method = RequestMethod.POST )
     public ModelAndView save ( MultipartFile sumario,  @Valid Produto produto , BindingResult result , RedirectAttributes redirectAttributes ) {
 
-        System.out.println( sumario );
+        System.out.println( sumario .getOriginalFilename());
         
         if ( result.hasErrors() ) {
             return form(produto);
@@ -96,6 +97,21 @@ public class ProductsController {
         List < Produto > produtos = produtoDAO.find();
         ModelAndView modelAndView = new ModelAndView( "produtos/lista" );
         modelAndView.addObject( "produtos" , produtos );
+        return modelAndView;
+    }
+    
+    /**
+     * 
+     * Método que retorna os detalhes de um item selecionado.
+     * @param id
+     * @return
+     */
+    @RequestMapping("/detalhe/{id}")
+    public ModelAndView detalhe(@PathVariable("id") Integer id) {
+        ModelAndView modelAndView = new ModelAndView("produtos/detalhe");
+        Produto produto = produtoDAO.find(id);
+        modelAndView.addObject("produto", produto );
+        
         return modelAndView;
     }
 }

@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import br.com.casadocodigo.DAO.ProdutoDAO;
 import br.com.casadocodigo.controller.HomeController;
 import br.com.casadocodigo.infra.FileSaver;
+import br.com.casadocodigo.models.CarrinhoCompras;
 
 /**
  * 
@@ -35,13 +36,14 @@ import br.com.casadocodigo.infra.FileSaver;
  *                LISTA DE CLASSES INTERNAS: <br>
  */
 @EnableWebMvc
-@ComponentScan ( basePackageClasses = { HomeController.class , ProdutoDAO.class, FileSaver.class } )
+@ComponentScan ( basePackageClasses = { HomeController.class , ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class } )
 public class AppWebConfiguration {
 
 	/**
 	 * Método que ajuda o Spring a encontrar as views, definindo o caminho e a
 	 * extensão dos arquivos.
 	 * 
+	 * setExposedContextBeanNames - disponibiliza atributos para ser utilizados pela jsp 
 	 * @return
 	 */
 	@Bean
@@ -49,6 +51,7 @@ public class AppWebConfiguration {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix( "/WEB-INF/views/" );
 		resolver.setSuffix( ".jsp" );
+		resolver.setExposedContextBeanNames( "carrinhoCompras" );
 		return resolver;
 	}
 
