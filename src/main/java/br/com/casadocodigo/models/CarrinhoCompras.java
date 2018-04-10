@@ -10,7 +10,9 @@ package br.com.casadocodigo.models;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.WebApplicationContext;
 
 /**
  * DOCUMENTAÇÃO DA CLASSE <br>
@@ -18,6 +20,8 @@ import org.springframework.stereotype.Component;
  * FINALIDADE: <br>
  * Classe responsável em adicionar o produto no carrinho de compras.
  * <br>
+ * WebApplicationContext.SCOPE_SESSION - cria o carrinho no scopo da sessão, assim seja únicoa para cada usuário que entrar na aplicação.
+ * O scope Default é o SCOPE.APPLICATION
  * HISTÓRICO DE DESENVOLVIMENTO: <br>
  * 8 de abr de 2018 - @author jorge - Primeira versão da classe. <br>
  * <br>
@@ -26,6 +30,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@Scope(value=WebApplicationContext.SCOPE_SESSION)
 public class CarrinhoCompras {
 
     private Map < CarrinhoItem , Integer > itens = new LinkedHashMap < CarrinhoItem , Integer >();

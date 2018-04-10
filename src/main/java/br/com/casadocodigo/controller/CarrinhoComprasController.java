@@ -8,8 +8,10 @@
 package br.com.casadocodigo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.casadocodigo.DAO.ProdutoDAO;
@@ -24,6 +26,11 @@ import br.com.casadocodigo.models.TipoPreco;
  * FINALIDADE: <br>
  * Classe controladora do carrinho de compras.
  * <br>
+ * @Controller - trata a requisição. recebe um dado, repassa para outro objeto e devolve uma resposta.
+ * <br>
+ * @Scope(value=WebApplicationContext.SCOPE_REQUEST) - coloca o carrinhocomprascontroler no scopo da sessão. Assim quando
+ * há uma requisição, o controller é criado e depois, deixa de existir. 
+ *  <br>
  * HISTÓRICO DE DESENVOLVIMENTO: <br>
  * 8 de abr de 2018 - @author jorge - Primeira versão da classe. <br>
  * <br>
@@ -32,6 +39,7 @@ import br.com.casadocodigo.models.TipoPreco;
  */
 @Controller
 @RequestMapping ( "/carrinho" )
+@Scope(value=WebApplicationContext.SCOPE_REQUEST)
 public class CarrinhoComprasController {
 
     @Autowired
