@@ -8,6 +8,7 @@
 
 package br.com.casadocodigo.models;
 
+import java.math.BigDecimal;
 
 /** 
  * DOCUMENTAÇÃO DA CLASSE <br>
@@ -77,6 +78,23 @@ public class CarrinhoItem {
     public void setTipoPreco ( TipoPreco tipoPreco ) {
         this.tipoPreco = tipoPreco;
     }
+    
+    /**
+     * Método que retorna o tipo de preço.
+     * @return
+     */
+    public BigDecimal getPreco() {
+        return produto.precoPara(tipoPreco);
+    }
+    
+    /** 
+     * Método que retorna o valor total do produto.
+     * @param quantidade
+     * @return
+     */
+    public BigDecimal getTotal ( int quantidade ) {
+        return this.getPreco().multiply( new BigDecimal( quantidade ) );
+    }
 
 
     /** 
@@ -132,6 +150,8 @@ public class CarrinhoItem {
             return false;
         return true;
     }
-    
+
+
+   
    
 }
