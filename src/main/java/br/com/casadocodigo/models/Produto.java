@@ -8,6 +8,7 @@
 
 package br.com.casadocodigo.models;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class Produto {
     @ElementCollection
     private List<Preco> precos;
     
+    private String sumarioPath;
     
     /**
      * Método de recuperação do campo id
@@ -166,6 +168,38 @@ public class Produto {
     }
 
 
+    
+    /**
+     * Método de recuperação do campo sumarioPath
+     *
+     * @return valor do campo sumarioPath
+     */
+    public String getSumarioPath () {
+        return this.sumarioPath;
+    }
+
+
+    
+    /**
+     * Valor de sumarioPath atribuído a sumarioPath
+     *
+     * @param sumarioPath Atributo da Classe
+     */
+    public void setSumarioPath ( String sumarioPath ) {
+        this.sumarioPath = sumarioPath;
+    }
+
+    /** 
+     * Método que retorna o tipo de preço.
+     * Utilizado uma expressão lambda chamando o método filter do stream e como 
+     * parâmetro para esse método é passado uma função que verifica qual o tipo de preço, que faz o filtro dos elementos desejados
+     * @param tipoPreco
+     * @return
+     */
+    public BigDecimal precoPara ( TipoPreco tipoPreco ) {
+        return precos.stream().filter( preco -> preco.getTipo().equals( tipoPreco )).findFirst().get().getValor();
+    }
+
     /** 
      * TODO Descrição do Método
      * @return
@@ -189,12 +223,7 @@ public class Produto {
     public int hashCode () {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ( ( this.dataLancamento == null ) ? 0 : this.dataLancamento.hashCode() );
-        result = prime * result + ( ( this.descricao == null ) ? 0 : this.descricao.hashCode() );
         result = prime * result + ( ( this.id == null ) ? 0 : this.id.hashCode() );
-        result = prime * result + ( ( this.paginas == null ) ? 0 : this.paginas.hashCode() );
-        result = prime * result + ( ( this.precos == null ) ? 0 : this.precos.hashCode() );
-        result = prime * result + ( ( this.titulo == null ) ? 0 : this.titulo.hashCode() );
         return result;
     }
 
@@ -214,44 +243,18 @@ public class Produto {
         if ( getClass() != obj.getClass() )
             return false;
         Produto other = ( Produto ) obj;
-        if ( this.dataLancamento == null ) {
-            if ( other.dataLancamento != null )
-                return false;
-        }
-        else if ( ! this.dataLancamento.equals( other.dataLancamento ) )
-            return false;
-        if ( this.descricao == null ) {
-            if ( other.descricao != null )
-                return false;
-        }
-        else if ( ! this.descricao.equals( other.descricao ) )
-            return false;
         if ( this.id == null ) {
             if ( other.id != null )
                 return false;
         }
         else if ( ! this.id.equals( other.id ) )
             return false;
-        if ( this.paginas == null ) {
-            if ( other.paginas != null )
-                return false;
-        }
-        else if ( ! this.paginas.equals( other.paginas ) )
-            return false;
-        if ( this.precos == null ) {
-            if ( other.precos != null )
-                return false;
-        }
-        else if ( ! this.precos.equals( other.precos ) )
-            return false;
-        if ( this.titulo == null ) {
-            if ( other.titulo != null )
-                return false;
-        }
-        else if ( ! this.titulo.equals( other.titulo ) )
-            return false;
         return true;
     }
+
+
+   
+
 
 
 

@@ -9,12 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.casadocodigo.DAO.ProdutoDAO;
+import br.com.casadocodigo.infra.FileSaver;
 import br.com.casadocodigo.models.Produto;
 import br.com.casadocodigo.models.TipoPreco;
 import br.com.casadocodigo.validation.ProdutoValidation;
@@ -35,6 +38,9 @@ import br.com.casadocodigo.validation.ProdutoValidation;
 @RequestMapping ( "/produtos" )
 public class ProductsController {
 
+    @Autowired
+    private FileSaver fileSaver;
+    
     @Autowired
     private ProdutoDAO produtoDAO;
 
@@ -65,11 +71,17 @@ public class ProductsController {
      * @return
      */
     @RequestMapping ( method = RequestMethod.POST )
-    public ModelAndView save ( @Valid Produto produto , BindingResult result , RedirectAttributes redirectAttributes ) {
+    public ModelAndView save ( MultipartFile sumario,  @Valid Produto produto , BindingResult result , RedirectAttributes redirectAttributes ) {
 
+        System.out.println( sumario .getOriginalFilename());
+        
         if ( result.hasErrors() ) {
             return form(produto);
         }
+        
+        String path= fileSaver.write( "arquivos-sumario" , sumario );
+        produto.setSumarioPath( path );
+        
         produtoDAO.gravar( produto );
         redirectAttributes.addFlashAttribute( "sucesso" , "Produto cadastrado com sucesso!" );
         return new ModelAndView( "redirect:produtos" );
@@ -85,6 +97,21 @@ public class ProductsController {
         List < Produto > produtos = produtoDAO.find();
         ModelAndView modelAndView = new ModelAndView( "produtos/lista" );
         modelAndView.addObject( "produtos" , produtos );
+        return modelAndView;
+    }
+    
+    /**
+     * 
+     * Método que retorna os detalhes de um item selecionado.
+     * @param id
+     * @return
+     */
+    @RequestMapping("/detalhe/{id}")
+    public ModelAndView detalhe(@PathVariable("id") Integer id) {
+        ModelAndView modelAndView = new ModelAndView("produtos/detalhe");
+        Produto produto = produtoDAO.find(id);
+        modelAndView.addObject("produto", produto );
+        
         return modelAndView;
     }
 }

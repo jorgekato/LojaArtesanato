@@ -65,6 +65,58 @@ public class Preco {
     public void setTipo ( TipoPreco tipo ) {
         this.tipo = tipo;
     }
+
+    /** 
+     * TODO Descrição do Método
+     * @return
+     * @see java.lang.Object#hashCode()
+     */
+    @Override
+    public int hashCode () {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ( ( this.tipo == null ) ? 0 : this.tipo.hashCode() );
+        result = prime * result + ( ( this.valor == null ) ? 0 : this.valor.hashCode() );
+        return result;
+    }
+
+    /** 
+     * TODO Descrição do Método
+     * @param obj
+     * @return
+     * @see java.lang.Object#equals(java.lang.Object)
+     */
+    @Override
+    public boolean equals ( Object obj ) {
+        if ( this == obj )
+            return true;
+        if ( obj == null )
+            return false;
+        if ( getClass() != obj.getClass() )
+            return false;
+        Preco other = ( Preco ) obj;
+        if ( this.tipo != other.tipo )
+            return false;
+        if ( this.valor == null ) {
+            if ( other.valor != null )
+                return false;
+        }
+        else if ( ! this.valor.equals( other.valor ) )
+            return false;
+        return true;
+    }
+
+    /** 
+     * TODO Descrição do Método
+     * @return
+     * @see java.lang.Object#toString()
+     */
+    @Override
+    public String toString () {
+        StringBuilder builder = new StringBuilder();
+        builder.append( "Preco [valor=" ).append( this.valor ).append( ", tipo=" ).append( this.tipo ).append( "]" );
+        return builder.toString();
+    }
     
     
 }

@@ -49,4 +49,16 @@ public class ProdutoDAO {
     public List < Produto > find () {
         return em.createQuery( "select p from Produto p" , Produto.class ).getResultList();
     }
+
+    /**
+     * Método que retorna um produto atraves do seu id.
+     * 
+     * @param id
+     * @return
+     */
+    public Produto find ( Integer id ) {
+        return em.createQuery( "select distinct(p) from Produto p join fetch p.precos precos where p.id = :id" , Produto.class )
+                .setParameter( "id" , id )
+                .getSingleResult();
+    }
 }

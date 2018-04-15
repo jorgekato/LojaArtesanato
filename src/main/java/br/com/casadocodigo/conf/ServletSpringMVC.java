@@ -1,6 +1,8 @@
 package br.com.casadocodigo.conf;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -10,7 +12,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * DOCUMENTAÇÃO DA CLASSE <br>
  * ---------------------- <br>
  * FINALIDADE: <br>
- * Configura as classes utilizadas pelo Spring <br>
+ * Configura as classes utilizadas pelo Spring na inicialização da aplicação. <br>
  * HISTÓRICO DE DESENVOLVIMENTO: <br>
  * 31 de mar de 2018 - @author jorge - Primeira versão da classe. <br>
  * <br>
@@ -53,5 +55,15 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
         encodingFilter.setEncoding( "UTF-8" );
         return new Filter[] { encodingFilter };
+    }
+    
+    /** 
+     * Método que retorna o mesmo caminho do arquivo sem alterá-lo.
+     * @param registration
+     * @see org.springframework.web.servlet.support.AbstractDispatcherServletInitializer#customizeRegistration(javax.servlet.ServletRegistration.Dynamic)
+     */
+    @Override
+    protected void customizeRegistration ( Dynamic registration ) {
+        registration.setMultipartConfig( new MultipartConfigElement( "" ) );
     }
 }
