@@ -8,6 +8,7 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -36,24 +37,26 @@ import br.com.casadocodigo.models.CarrinhoCompras;
  *                LISTA DE CLASSES INTERNAS: <br>
  */
 @EnableWebMvc
-@ComponentScan ( basePackageClasses = { HomeController.class , ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class } )
+@ComponentScan ( basePackageClasses = { HomeController.class , ProdutoDAO.class , FileSaver.class , CarrinhoCompras.class } )
 public class AppWebConfiguration {
 
-	/**
-	 * Método que ajuda o Spring a encontrar as views, definindo o caminho e a
-	 * extensão dos arquivos.
-	 * 
-	 * setExposedContextBeanNames - disponibiliza atributos para ser utilizados pela jsp 
-	 * @return
-	 */
-	@Bean
-	public InternalResourceViewResolver internalResourceViewResolver() {
-		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix( "/WEB-INF/views/" );
-		resolver.setSuffix( ".jsp" );
-		resolver.setExposedContextBeanNames( "carrinhoCompras" );
-		return resolver;
-	}
+    /**
+     * Método que ajuda o Spring a encontrar as views, definindo o caminho e a
+     * extensão dos arquivos.
+     * 
+     * setExposedContextBeanNames - disponibiliza atributos para ser utilizados
+     * pela jsp
+     * 
+     * @return
+     */
+    @Bean
+    public InternalResourceViewResolver internalResourceViewResolver () {
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix( "/WEB-INF/views/" );
+        resolver.setSuffix( ".jsp" );
+        resolver.setExposedContextBeanNames( "carrinhoCompras" );
+        return resolver;
+    }
 
     /**
      * 
@@ -67,7 +70,6 @@ public class AppWebConfiguration {
         messageSource.setBasename( "/WEB-INF/message" );
         messageSource.setDefaultEncoding( "UTF-8" );
         messageSource.setCacheSeconds( 1 );
-       
         return messageSource;
     }
 
@@ -83,18 +85,31 @@ public class AppWebConfiguration {
         DateFormatterRegistrar registrar = new DateFormatterRegistrar();
         registrar.setFormatter( new DateFormatter( "dd/MM/yyyy" ) );
         registrar.registerFormatters( conversionService );
-        
         return conversionService;
     }
-    
+
     /**
      * 
-     * Método que configura a utilização do multipart para salvar um arquivo no banco.
-     * MultipartResolver se refere a um resolvedor de dados multimidia.Identifica o formato do arquivo (pdf,imagem,etc) 
+     * Método que configura a utilização do multipart para salvar um arquivo no
+     * banco. MultipartResolver se refere a um resolvedor de dados
+     * multimidia.Identifica o formato do arquivo (pdf,imagem,etc)
+     * 
      * @return
      */
     @Bean
-    public MultipartResolver multipartResolver() {
+    public MultipartResolver multipartResolver () {
         return new StandardServletMultipartResolver();
+    }
+
+    /**
+     * 
+     * Método que configura um restTemplate para que a aplicação possa realizar
+     * a integração com outra aplicação para o pagamento da compra.
+     * 
+     * @return
+     */
+    @Bean
+    public RestTemplate restTemplate () {
+        return new RestTemplate();
     }
 }
