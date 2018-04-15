@@ -25,6 +25,9 @@ import org.springframework.web.context.WebApplicationContext;
  * WebApplicationContext.SCOPE_SESSION - cria o carrinho no scopo da sessão,
  * assim seja únicoa para cada usuário que entrar na aplicação. O scope Default
  * é o SCOPE.APPLICATION HISTÓRICO DE DESENVOLVIMENTO: <br>
+ * 
+ * * @Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode=ScopedProxyMode.TARGET_CLASS) - utilizando o proxyMode, não 
+ * será necessário mais anotá-las com @Scope(value = WebApplicationContext.SCOPE_REQUEST)
  * 8 de abr de 2018 - @author jorge - Primeira versão da classe. <br>
  * <br>
  * <br>
