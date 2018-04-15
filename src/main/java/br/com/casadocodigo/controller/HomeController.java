@@ -1,7 +1,14 @@
 package br.com.casadocodigo.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import br.com.casadocodigo.DAO.ProdutoDAO;
+import br.com.casadocodigo.models.Produto;
 
 /**
  * 
@@ -20,9 +27,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 	
+	@Autowired
+	private ProdutoDAO produtoDAO;
+
 	@RequestMapping("/")
-	public String index() {
-		System.out.println( "Entrando na home da CDC" );
-		return "home";
+	public ModelAndView index() {
+		
+		List<Produto> produtos = produtoDAO.find();
+		ModelAndView modelAndView = new ModelAndView("home");
+		modelAndView.addObject("produtos", produtos);
+		
+		return modelAndView;
 	}
 }
