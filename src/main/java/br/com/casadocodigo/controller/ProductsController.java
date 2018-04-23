@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -68,9 +69,12 @@ public class ProductsController {
      * @param produto
      * @param result - recebe os erros realizado na validação.
      * @param redirectAttributes - o atributo Flash só dura uma requisição, após isso ele deixa de existir.
+     * 
+     * @CacheEvict( value="produtosHome", allEntries=true ) - limpa o cache atual e atualiza com o novo produto cadastrado.
      * @return
      */
     @RequestMapping ( method = RequestMethod.POST )
+    @CacheEvict( value="produtosHome", allEntries=true )
     public ModelAndView save ( MultipartFile sumario,  @Valid Produto produto , BindingResult result , RedirectAttributes redirectAttributes ) {
 
         System.out.println( sumario .getOriginalFilename());
