@@ -54,7 +54,7 @@
 				<nav id="main-nav">
 					
 					<ul class="clearfix">
-						<li><a href="/cart" rel="nofollow">Carrinho</a></li>
+						<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">Carrinho</a></li>
 
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 
@@ -66,9 +66,9 @@
 	</header>
 	<nav class="categories-nav">
 		<ul class="container">
-			<li class="category"><a href="http://www.casadocodigo.com.br">Home</a></li>
-			<li class="category"><a href="/collections/livros-de-agile">
-					Agile </a></li>
+			<li class="category"><a href="${s:mvcUrl('HC#index').build() }">Home</a></li>
+			<li class="category"><a href="${s:mvcUrl('PC#form').build() }">
+					Cadastro </a></li>
 			<li class="category"><a href="/collections/livros-de-front-end">
 					Front End </a></li>
 			<li class="category"><a href="/collections/livros-de-games">

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +52,7 @@
 				<nav id="main-nav">
 
 					<ul class="clearfix">
-						<li><a href="/carrinho" rel="nofollow">Carrinho
+						<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">Carrinho
 								(${carrinhoCompras.quantidade })</a></li>
 
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre
@@ -66,7 +67,7 @@
 	</header>
 	<nav class="categories-nav">
 		<ul class="container">
-			<li class="category"><a href="http://www.casadocodigo.com.br">Home</a></li>
+			<li class="category"><a href="${s:mvcUrl('HC#index').build() }">Home</a></li>
 			<li class="category"><a href="/collections/livros-de-agile">Agile</a></li>
 			<li class="category"><a href="/collections/livros-de-front-end">Front
 					End</a></li>
