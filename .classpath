@@ -66,6 +66,8 @@
 	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-core/2.5.1/jackson-core-2.5.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-databind/2.5.1/jackson-databind-2.5.1.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/com/google/guava/guava/18.0/guava-18.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-context-support/4.1.0.RELEASE/spring-context-support-4.1.0.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
