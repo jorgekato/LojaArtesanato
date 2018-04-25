@@ -43,6 +43,14 @@
 		<link rel="canonical" href="http://www.casadocodigo.com.br/" />	
 		<link href="${contextPath}resources/css/book-collection.css"
 				rel="stylesheet" type="text/css" media="all" />
+	
+	<c:url value="/resources/css" var="cssPath"/>
+<link rel="stylesheet" href="${cssPath}/bootstrap.min.css">
+
+<link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css">
+
+<%-- <script src="${cssPath}/js/bootstrap.min.js"></script> --%>			
+	
 </head>
 <body>
 
