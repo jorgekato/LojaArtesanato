@@ -165,6 +165,12 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 	
+	/**
+	 * 
+	 * Método que configura o servlet padrão para que atenda as requisições de arquivos com css e js
+	 * @param configurer - habilita o servlet padrão.
+	 * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter#configureDefaultServletHandling(org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer)
+	 */
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
