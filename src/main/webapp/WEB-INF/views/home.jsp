@@ -43,109 +43,144 @@
 		<link rel="canonical" href="http://www.casadocodigo.com.br/" />	
 		<link href="${contextPath}resources/css/book-collection.css"
 				rel="stylesheet" type="text/css" media="all" />
+	
+	<c:url value="/resources/css" var="cssPath"/>
+<link rel="stylesheet" href="${cssPath}/bootstrap.min.css">
+
+<link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css">
+
+<%-- <script src="${cssPath}/js/bootstrap.min.js"></script> --%>			
+	
 </head>
 <body>
-
-  <header id="layout-header">
-		<div class="clearfix container">
-			<a href="/" id="logo">
-			</a>
-			<div id="header-content">
-				<nav id="main-nav">
-					
-					<ul class="clearfix">
-						<li><a href="/cart" rel="nofollow">Carrinho</a></li>
-
-						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
-
-						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
-					</ul>
-				</nav>
-			</div>
+<nav class="navbar navbar-inverse">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+				aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="${s:mvcUrl('HC#index').build() }">Casa do Código</a>
 		</div>
-	</header>
-	<nav class="categories-nav">
-		<ul class="container">
-			<li class="category"><a href="http://www.casadocodigo.com.br">Home</a></li>
-			<li class="category"><a href="/collections/livros-de-agile">
-					Agile </a></li>
-			<li class="category"><a href="/collections/livros-de-front-end">
-					Front End </a></li>
-			<li class="category"><a href="/collections/livros-de-games">
-					Games </a></li>
-			<li class="category"><a href="/collections/livros-de-java">
-					Java </a></li>
-			<li class="category"><a href="/collections/livros-de-mobile">
-					Mobile </a></li>
-			<li class="category"><a
-				href="/collections/livros-desenvolvimento-web"> Web </a></li>
-			<li class="category"><a href="/collections/outros"> Outros </a></li>
-		</ul>
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="${s:mvcUrl('PC#listar').build() }">Lista de Produtos</a></li>
+				<li><a href="${s:mvcUrl('PC#form').build() }">Cadastro de Produtos</a></li>
+				<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
+				<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
+				<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">Carrinho</a></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</div>
 	</nav>
+	<div class="container">
 
-			
-	<section id="index-section" class="container middle">
+		<header id="layout-header">
+			<div class="clearfix container">
+				<a href="/" id="logo"> </a>
+				<div id="header-content">
+					<nav id="main-nav">
 
-		<h1 class="cdc-call">Últimos dias com os preços promocionais. Aproveite!</h1>
-		<ul class="clearfix book-collection">
-
-			<c:forEach items="${produtos }" var="produto">
-			
-			<li><a href="${s:mvcUrl('PC#detalhe').arg(0,produto.id).build() }" class="block clearfix">
-					<h2 class="product-title">${produto.titulo }</h2>
-					<img width="143"
-						height="202"
-						src="https://cdn.shopify.com/s/files/1/0155/7645/products/java8-featured_large.png?v=1411490181"
-						alt="Java 8 Prático"
-						title="Java 8 Prático"/>
-					<small class="buy-button">Compre</small>
-			</a></li>
-			
-			</c:forEach>
-			
-		</ul>
-
-		<h2 class="cdc-call">Diferenciais da Casa do Código</h2>
-
-		<ul id="cdc-diferenciais" class="clearfix">
-			<li class="col-left">
-				<h3>E-books sem DRM. Leia onde quiser</h3>
-				<p>
-					<span class="sprite" id="sprite-drm"></span> Nossos e-books não
-					possuem DRM, ou seja, você pode ler em qualquer computador, tablet
-					e smartphone.
-				</p>
-			</li>
-			<li class="col-right">
-				<h3>Autores de renome na comunidade</h3>
-				<p>
-					<span class="sprite" id="sprite-renome"></span> Autores que
-					participam ativamente na comunidade com Open Source, listas de
-					discussão, grupos e mais.
-				</p>
-			</li>
-			<li class="col-left">
-				<h3>Receba atualizações dos e-books</h3>
-				<p>
-					<span class="sprite" id="sprite-atualizacoes"></span> Quando você
-					compra um e-book, automaticamente tem direito às atualizações e
-					correções dele.
-				</p>
-			</li>
-			<li class="col-right">
-				<h3>Livros com curadoria da Caelum</h3>
-				<p>
-					<span class="sprite" id="sprite-caelum"></span> Desenvolvedores
-					experientes que avaliam e revisam os livros constantemente.
-				</p>
-			</li>
-		</ul>
+						<ul class="clearfix">
 
 
 
-	</section>
 
-	
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+		<nav class="categories-nav">
+			<ul class="container">
+				<li class="category"><a href="${s:mvcUrl('HC#index').build() }">Home</a></li>
+				<li class="category"><a href="${s:mvcUrl('PC#form').build() }">
+						Cadastro </a></li>
+				<li class="category"><a href="/collections/livros-de-front-end">
+						Front End </a></li>
+				<li class="category"><a href="/collections/livros-de-games">
+						Games </a></li>
+				<li class="category"><a href="/collections/livros-de-java">
+						Java </a></li>
+				<li class="category"><a href="/collections/livros-de-mobile">
+						Mobile </a></li>
+				<li class="category"><a
+					href="/collections/livros-desenvolvimento-web"> Web </a></li>
+				<li class="category"><a href="/collections/outros"> Outros
+				</a></li>
+			</ul>
+		</nav>
+
+
+		<section id="index-section" class="container middle">
+
+			<h2 class="cdc-call">Últimos dias com os preços promocionais.
+				Aproveite!</h2>
+			<div>
+				<ul class="container middle">
+					<c:forEach items="${produtos }" var="produto">
+
+						<li><a
+							href="${s:mvcUrl('PC#detalhe').arg(0,produto.id).build() }"
+							class="block clearfix">
+								<h5 class="product-title">${produto.titulo }</h5> <img
+								width="100" height="150"
+								src="https://cdn.shopify.com/s/files/1/0155/7645/products/java8-featured_large.png?v=1411490181"
+								alt="Java 8 Prático" title="Java 8 Prático" /> <small
+								class="buy-button">Compre</small>
+						</a></li>
+
+					</c:forEach>
+				</ul>
+			</div>
+
+			<h2 class="cdc-call">Diferenciais da Casa do Código</h2>
+
+			<ul id="cdc-diferenciais" class="clearfix">
+				<li class="col-left">
+					<h3>E-books sem DRM. Leia onde quiser</h3>
+					<p>
+						<span class="sprite" id="sprite-drm"></span> Nossos e-books não
+						possuem DRM, ou seja, você pode ler em qualquer computador, tablet
+						e smartphone.
+					</p>
+				</li>
+				<li class="col-right">
+					<h3>Autores de renome na comunidade</h3>
+					<p>
+						<span class="sprite" id="sprite-renome"></span> Autores que
+						participam ativamente na comunidade com Open Source, listas de
+						discussão, grupos e mais.
+					</p>
+				</li>
+				<li class="col-left">
+					<h3>Receba atualizações dos e-books</h3>
+					<p>
+						<span class="sprite" id="sprite-atualizacoes"></span> Quando você
+						compra um e-book, automaticamente tem direito às atualizações e
+						correções dele.
+					</p>
+				</li>
+				<li class="col-right">
+					<h3>Livros com curadoria da Caelum</h3>
+					<p>
+						<span class="sprite" id="sprite-caelum"></span> Desenvolvedores
+						experientes que avaliam e revisam os livros constantemente.
+					</p>
+				</li>
+			</ul>
+
+
+
+		</section>
+
+	</div>
+
 	<footer id="layout-footer">
 		<div class="clearfix container">
 			<div id="collections-footer">
