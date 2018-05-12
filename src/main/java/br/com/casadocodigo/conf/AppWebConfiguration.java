@@ -6,7 +6,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +20,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -54,7 +55,7 @@ import br.com.casadocodigo.models.CarrinhoCompras;
 @EnableWebMvc
 @ComponentScan(basePackageClasses = { HomeController.class, ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class })
 @EnableCaching
-public class AppWebConfiguration {
+public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	/**
 	 * Método que ajuda o Spring a encontrar as views, definindo o caminho e a
@@ -161,6 +162,20 @@ public class AppWebConfiguration {
 		resolver.setContentNegotiationManager(manager);
 
 		return resolver;
+	}
+
+	/**
+	 * 
+	 * Método que configura o servlet padrão para que atenda as requisições de
+	 * arquivos com css e js
+	 * 
+	 * @param configurer
+	 *            - habilita o servlet padrão.
+	 * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter#configureDefaultServletHandling(org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer)
+	 */
+	@Override
+	public void configureDefaultServletHandling( DefaultServletHandlerConfigurer configurer ) {
+		configurer.enable();
 	}
 
 }
