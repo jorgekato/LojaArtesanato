@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import br.com.casadocodigo.DAO.UsuarioDAO;
 
@@ -44,12 +45,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 		.antMatchers( "/produtos/form" ).hasRole("ADMIN")
 		.antMatchers( "/carrinho/**" ).permitAll()
+		.antMatchers( "/resources/**" ).permitAll()
 		.antMatchers( HttpMethod.POST, "/produtos" ).hasRole( "ADMIN" )
 		.antMatchers( HttpMethod.GET, "/produtos" ).hasRole( "ADMIN" )
 		.antMatchers( "/produtos/**" ).permitAll()	//permite acesso a todas as view que não estejam bloqueadas.
 		.antMatchers( "/" ).permitAll()
 		.anyRequest().authenticated()		//verifica todo request para saber se esta autenticado.
-		.and().formLogin();					//caso não esteja autenticado, envia para view de login.
+		.and().formLogin().loginPage( "/login" ).permitAll() // caso não esteja autenticado, envia para view de login.
+		.and().logout().logoutRequestMatcher( new AntPathRequestMatcher( "/logout" ) );
 	}
 	
 	
