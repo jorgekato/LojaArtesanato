@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,11 +66,12 @@
 			</button>
 			<a class="navbar-brand" href="${s:mvcUrl('HC#index').build() }">Casa do Código</a>
 		</div>
-		<div class="collapse navbar-collapse"
-			id="bs-example-navbar-collapse-1">
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
+			<security:authorize access="hasRole('ROLE_ADMIN')">
 				<li><a href="${s:mvcUrl('PC#listar').build() }">Lista de Produtos</a></li>
 				<li><a href="${s:mvcUrl('PC#form').build() }">Cadastro de Produtos</a></li>
+			</security:authorize>
 				<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 				<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
 				<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">Carrinho</a></li>
@@ -77,19 +79,25 @@
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
-	</nav>
+</nav>
+
+<nav id="nav justify-content-center">
 	<div class="container">
 
 		<header id="layout-header">
 			<div class="clearfix container">
 				<a href="/" id="logo"> </a>
 				<div id="header-content">
-					<nav id="main-nav">
 
-						<ul class="clearfix">
-
-
-
+						<ul>
+							<li class="category"><a href="${s:mvcUrl('HC#index').build() }">Home</a></li>
+							<li class="category"><a href="${s:mvcUrl('PC#form').build() }">Cadastro </a></li>
+							<li class="category"><a href="/collections/livros-de-front-end">Front End</a></li>
+							<li class="category"><a href="/collections/livros-de-games">Games</a></li>
+							<li class="category"><a href="/collections/livros-de-java">Java</a></li>
+							<li class="category"><a href="/collections/livros-de-mobile">Mobile</a></li>
+							<li class="category"><a	href="/collections/livros-desenvolvimento-web">Web</a></li>
+							<li class="category"><a href="/collections/outros">Outros</a></li>
 
 						</ul>
 					</nav>
@@ -98,24 +106,12 @@
 		</header>
 		<nav class="categories-nav">
 			<ul class="container">
-				<li class="category"><a href="${s:mvcUrl('HC#index').build() }">Home</a></li>
-				<li class="category"><a href="${s:mvcUrl('PC#form').build() }">
-						Cadastro </a></li>
-				<li class="category"><a href="/collections/livros-de-front-end">
-						Front End </a></li>
-				<li class="category"><a href="/collections/livros-de-games">
-						Games </a></li>
-				<li class="category"><a href="/collections/livros-de-java">
-						Java </a></li>
-				<li class="category"><a href="/collections/livros-de-mobile">
-						Mobile </a></li>
-				<li class="category"><a
-					href="/collections/livros-desenvolvimento-web"> Web </a></li>
-				<li class="category"><a href="/collections/outros"> Outros
-				</a></li>
 			</ul>
-		</nav>
+</nav>
 
+
+
+	<div class="container">
 
 		<section id="index-section" class="container middle">
 
@@ -139,46 +135,8 @@
 				</ul>
 			</div>
 
-			<h2 class="cdc-call">Diferenciais da Casa do Código</h2>
-
-			<ul id="cdc-diferenciais" class="clearfix">
-				<li class="col-left">
-					<h3>E-books sem DRM. Leia onde quiser</h3>
-					<p>
-						<span class="sprite" id="sprite-drm"></span> Nossos e-books não
-						possuem DRM, ou seja, você pode ler em qualquer computador, tablet
-						e smartphone.
-					</p>
-				</li>
-				<li class="col-right">
-					<h3>Autores de renome na comunidade</h3>
-					<p>
-						<span class="sprite" id="sprite-renome"></span> Autores que
-						participam ativamente na comunidade com Open Source, listas de
-						discussão, grupos e mais.
-					</p>
-				</li>
-				<li class="col-left">
-					<h3>Receba atualizações dos e-books</h3>
-					<p>
-						<span class="sprite" id="sprite-atualizacoes"></span> Quando você
-						compra um e-book, automaticamente tem direito às atualizações e
-						correções dele.
-					</p>
-				</li>
-				<li class="col-right">
-					<h3>Livros com curadoria da Caelum</h3>
-					<p>
-						<span class="sprite" id="sprite-caelum"></span> Desenvolvedores
-						experientes que avaliam e revisam os livros constantemente.
-					</p>
-				</li>
-			</ul>
-
-
-
 		</section>
-
+		
 	</div>
 
 	<footer id="layout-footer">
