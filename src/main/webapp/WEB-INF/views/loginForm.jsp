@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="securiry"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -37,16 +38,15 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${s:mvcUrl('HC#index').build() }">Casa
-				do Código</a>
+			<a class="navbar-brand" href="${s:mvcUrl('HC#index').build() }">Casa do Código</a>
 		</div>
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="${s:mvcUrl('PC#listar').build() }">Lista de
-						Produtos</a></li>
-				<li><a href="${s:mvcUrl('PC#form').build() }">Cadastro de
-						Produtos</a></li>
+			<securiry:authorize access="hasRole('ROLE_ADMIN')" >
+				<li><a href="${s:mvcUrl('PC#listar').build() }">Lista de Produtos</a></li>
+				<li><a href="${s:mvcUrl('PC#form').build() }">Cadastro de Produtos</a></li>
+			</securiry:authorize>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
