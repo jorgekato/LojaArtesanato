@@ -3,9 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- Import da taglib -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="securiry"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -18,6 +18,13 @@
 <link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css">
 
 <%-- <script src="${cssPath}/js/bootstrap.min.js"></script> --%>
+
+<style type="text/css">
+	body{
+		padding:0px 0px;
+	}
+
+</style>
 
 </head>
 <body>
@@ -36,40 +43,32 @@
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
+			<securiry:authorize access="hasRole('ROLE_ADMIN')" >
 				<li><a href="${s:mvcUrl('PC#listar').build() }">Lista de Produtos</a></li>
 				<li><a href="${s:mvcUrl('PC#form').build() }">Cadastro de Produtos</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-			  <li><a href="#"><security:authentication property="principal" var="usuario"/>
-				Usuario: ${usuario.username }
-			  </a></li>
+			</securiry:authorize>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
 	</div>
 	</nav>
 
-
 	<div class="container">
-
-		<h1>Lista de Produtos</h1>
-		<p>${sucesso}</p>
-		<p>${falha}</p>
-		<table class="table table-bordered table-striped table-hover">
-			<tr>
-				<th>Título</th>
-				<th>Descrição</th>
-				<th>Páginas</th>
-			</tr>
-			<c:forEach items="${produtos}" var="produto">
-				<tr>
-					<td><a
-						href="${s:mvcUrl('PC#detalhe').arg(0,produto.id).build() }">${produto.titulo}</a></td>
-					<td>${produto.descricao}</td>
-					<td>${produto.paginas}</td>
-				</tr>
-			</c:forEach>
-		</table>
+	<h1>Login</h1>
+		<form:form servletRelativeAction="/login" method="post">
+			<div class="form-group">
+				<label>E-mail</label>
+				<input type="text" name="username" class="form-control"/>
+				<form:errors path="username" />
+			</div>
+			<div class="form-group">
+				<label>Senha</label>
+				<input type="password" name="password" class="form-control"/>
+				<form:errors path="password" />
+			</div>
+			
+			<button type="submit" class="btn btn-primary">Logar</button>
+		</form:form>
 	</div>
 
 </body>
