@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <!-- Import da taglib -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
@@ -9,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Livros de Java, Android, iPhone, Ruby, PHP e muito mais -
-	Casa do CÃ³digo</title>
+	Casa do Código</title>
 
 <c:url value="/resources/css" var="cssPath" />
 <link rel="stylesheet" href="${cssPath}/bootstrap.min.css">
@@ -38,7 +36,7 @@
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="${s:mvcUrl('HC#index').build() }">Casa
-				do CÃ³digo</a>
+				do Código</a>
 		</div>
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
@@ -57,23 +55,24 @@
 	<h1>Cadastro de Produto</h1>
 		<form:form action="${s:mvcUrl('PC#save').build() }" method="post"
 			commandName="produto" enctype="multipart/form-data">
+			<form:hidden path="id" cssClass="form-control"/>
 			<div class="form-group">
-				<label>TÃ­tulo</label>
+				<label>Título</label>
 				<form:input path="titulo" cssClass="form-control"/>
 				<form:errors path="titulo" />
 			</div>
 			<div class="form-group">
-				<label>DescriÃ§Ã£o</label>
+				<label>Descrição</label>
 				<form:textarea path="descricao" cssClass="form-control"/>
 				<form:errors path="descricao" />
 			</div>
 			<div class="form-group">
-				<label>PÃ¡ginas</label>
+				<label>Páginas</label>
 				<form:input path="paginas" cssClass="form-control"/>
 				<form:errors path="paginas" />
 			</div>
 			<div class="form-group">
-				<label>Data LanÃ§amento</label>
+				<label>Data Lançamento</label>
 				<form:input path="dataLancamento" cssClass="form-control"/>
 				<form:errors path="dataLancamento" />
 			</div>
@@ -87,7 +86,7 @@
 			</c:forEach>
 
 			<div class="form-group">
-				<label>SumÃ¡rio</label> 
+				<label>Sumário</label> 
 				<input name="sumario" type="file"class="form-control">
 			</div>
 			<button type="submit" class="btn btn-primary">Cadastrar</button>
