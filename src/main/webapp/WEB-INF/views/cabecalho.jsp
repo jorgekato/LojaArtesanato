@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!-- Import da taglib -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -8,53 +6,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
-<head>
-	<c:url value="/" var="contextPath" />
-	  <meta charset="utf-8"/>
-		  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-		  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-		<link rel="icon"
-			href="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/favicon.ico?11981592617154272979"
-			type="image/ico" />
-		<link href="https://plus.googlecom/108540024862647200608"
-			rel="publisher"/>
-		<title>Livros de Java, SOA, Android, iPhone, Ruby on Rails e
-			muito mais - Casa do Código</title>
-		<link href="${contextPath}resources/css/cssbase-min.css"
-			rel="stylesheet" type="text/css" media="all" />
-		<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700'
-			rel='stylesheet'/>
-		<link href="${contextPath}resources/css/fonts.css"
-			rel="stylesheet" type="text/css" media="all" />
-		<link href="${contextPath}resources/css/fontello-ie7.css"
-			rel="stylesheet" type="text/css" media="all" />
-		<link href="${contextPath}resources/css/fontello-embedded.css"
-			rel="stylesheet" type="text/css" media="all" />
-		<link href="${contextPath}resources/css/fontello.css"
-			rel="stylesheet" type="text/css" media="all" />
-		<link href="${contextPath}resources/css/style.css"
-			rel="stylesheet" type="text/css" media="all" />
-		<link href="${contextPath}resources/css/layout-colors.css"
-			rel="stylesheet" type="text/css" media="all" />
-		<link href="${contextPath}resources/css/responsive-style.css"
-			rel="stylesheet" type="text/css" media="all" />
-		<link href="${contextPath}resources/css/guia-do-programador-style.css" 
-			rel="stylesheet" type="text/css"  media="all"  />
-	    <link href="${contextPath}resources/css/produtos.css" 
-	    	rel="stylesheet" type="text/css"  media="all"  />
-		<link rel="canonical" href="http://www.casadocodigo.com.br/" />	
-		<link href="${contextPath}resources/css/book-collection.css"
-				rel="stylesheet" type="text/css" media="all" />
-	
-	<c:url value="/resources/css" var="cssPath"/>
-<link rel="stylesheet" href="${cssPath}/bootstrap.min.css">
 
-<link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css">
 
-<%-- <script src="${cssPath}/js/bootstrap.min.js"></script> --%>			
-	
-</head>
-<body>
 <nav class="navbar navbar-inverse">
 	<div class="container">
 		<div class="navbar-header">
@@ -65,7 +18,7 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${s:mvcUrl('HC#index').build() }">Casa do Código</a>
+			<a class="navbar-brand" href="${s:mvcUrl('HC#index').build() }">Casa do C�digo</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
