@@ -61,4 +61,17 @@ public class ProdutoDAO {
                 .setParameter( "id" , id )
                 .getSingleResult();
     }
+
+	public void update( Produto produto ) {
+		em.merge( produto ); 
+		em.close();
+		
+		
+	}
+
+	public Produto findById(Integer id) {
+		return em.createQuery( "select distinct(p) from Produto p where p.id = :id" , Produto.class )
+                .setParameter( "id" , id )
+                .getSingleResult();
+	}
 }

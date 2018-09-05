@@ -24,7 +24,7 @@
 				<tr>
 					<th class="cart-img-col"></th>
 					<th width="65%">Item</th>
-					<th width="10%">Preço</th>
+					<th width="10%">PreÃ§o</th>
 					<th width="10%">Quantidade</th>
 					<th width="10%">Total</th>
 					<th width="5%"></th>
@@ -65,7 +65,7 @@
 			</tfoot>
 		</table>
 
-		<h2>Você já conhece os outros livros da Casa do Código?</h2>
+		<h2>VocÃª jÃ¡ conhece os outros livros da Casa do CÃ³digo?</h2>
 		<ul id="collection" class="related-books">
 			<li class="col-left"><a href="/products/livro-plsql"
 				class="block clearfix book-suggest"

@@ -61,6 +61,14 @@ public class ProductsController {
         modelAndView.addObject( "tipos" , TipoPreco.values() );
         return modelAndView;
     }
+    @RequestMapping("/editar/{id}")
+    public ModelAndView editar(@PathVariable("id") Integer id) {
+        ModelAndView modelAndView = new ModelAndView("produtos/form");
+        Produto produto = produtoDAO.findById(id);
+        modelAndView.addObject("produto", produto );
+        
+        return modelAndView;
+    }
 
     /**
      * 
@@ -86,8 +94,12 @@ public class ProductsController {
         
         String path= fileSaver.write( "arquivos-sumario" , sumario );
         produto.setSumarioPath( path );
-        
+        if (produto.getId() == null) {
         produtoDAO.gravar( produto );
+        }
+        else {
+        	produtoDAO.update( produto );
+        }
         redirectAttributes.addFlashAttribute( "sucesso" , "Produto cadastrado com sucesso!" );
         return new ModelAndView( "redirect:produtos" );
     }
