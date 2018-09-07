@@ -1,13 +1,16 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
 <!-- Import da taglib -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!--form - evita ataque CSRF e trabalha com um token que identifica o formulário  -->
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
-<%@ include file="/WEB-INF/views/cabecalho.jsp" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 
+<c:url value="/" var="contextPath" />
+
+<tags:pageTemplate titulo="Carrinho">
 	<section class="container middle">
 		<h2 id="cart-title">Seu carrinho de compras</h2>
 
@@ -43,11 +46,10 @@
 							value="${carrinhoCompras.getQuantidade(item) }" /></td>
 						<td class="numeric-cell">${carrinhoCompras.getTotal(item) }</td>
 						<td class="remove-item">
-						<td>
-							<form action="${s:mvcUrl('CCC#remover').arg(0,item.produto.id).arg(1,item.tipoPreco).build() }" method="post">
-								<input type="image" src="/excluir.png" alt="Excluir"
-									title="Excluir" />
-							</form>
+							<form:form action="${s:mvcUrl('CCC#remover').arg(0,item.produto.id).arg(1,item.tipoPreco).build() }"
+										 method="post">
+								<input type="image" src="${contextPath }resources/imagens/excluir.png" alt="Excluir" title="Excluir" />
+							</form:form>
 						</td>
 					</tr>
 				</c:forEach>
@@ -55,9 +57,9 @@
 			<tfoot>
 				<tr>
 					<td colspan="3">
-						<form action="${s:mvcUrl('PC#finalizar').build() }" method="post">
+						<form:form action="${s:mvcUrl('PC#finalizar').build() }" method="POST">
 							<input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
-						</form>
+						</form:form>
 					</td>
 					<td class="numeric-cell">${carrinhoCompras.total }</td>
 					<td></td>
@@ -77,13 +79,9 @@
 		</ul>
 
 		<h2>
-			<a href="${s:mvcUrl('PC#listar').build() }">Veja todos os livros que
+			<a href="${s:mvcUrl('HC#index').build() }">Veja todos os livros que
 				publicamos!</a>
 		</h2>
 	</section>
-
-
-<%@ include file="/WEB-INF/views/rodape.jsp" %>
 	
-</body>
-</html>
+</tags:pageTemplate>

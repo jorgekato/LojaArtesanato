@@ -14,13 +14,18 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<spring.version>4.3.17.RELEASE</spring.version>
+		<spring.security.version>4.2.6.RELEASE</spring.security.version>
+	    <hibernate.version>4.3.11.Final</hibernate.version>
+	    <mysql.connector.version>5.1.46</mysql.connector.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
@@ -83,12 +88,12 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>4.3.0.Final</version>
+			<version>4.3.11.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.3.0.Final</version>
+			<version>4.3.11.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
@@ -98,12 +103,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>4.1.0.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.15</version>
+			<version>${mysql.connector.version}</version>
 		</dependency>
 
 		<!--Validações -->
@@ -115,7 +120,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.2.0.Final</version>
+			<version>4.3.2.Final</version>
 		</dependency>
 
 		<!--dependencias para realizar a integracao com a api de pagamentos -->
@@ -147,7 +152,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${spring.security.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
@@ -159,7 +164,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${spring.security.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
@@ -171,7 +176,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${spring.security.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
@@ -183,7 +188,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
-			<version>4.0.0.RELEASE</version>
+			<version>${spring.security.version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
