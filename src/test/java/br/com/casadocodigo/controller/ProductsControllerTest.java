@@ -20,7 +20,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import br.com.casadocodigo.DAO.ProdutoDAO;
 import br.com.casadocodigo.conf.AppWebConfiguration;
 import br.com.casadocodigo.conf.JPAConfiguration;
 import br.com.casadocodigo.conf.SecurityConfiguration;
