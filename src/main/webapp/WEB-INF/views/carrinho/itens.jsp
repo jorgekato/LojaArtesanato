@@ -25,8 +25,8 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th class="cart-img-col"></th>
-					<th width="65%">Item</th>
+					<th class="cart-img-col" width="10%"></th>
+					<th width="55%">Item</th>
 					<th width="10%">Preço</th>
 					<th width="10%">Quantidade</th>
 					<th width="10%">Total</th>

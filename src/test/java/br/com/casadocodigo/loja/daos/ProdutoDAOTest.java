@@ -28,7 +28,7 @@ import br.com.casadocodigo.models.TipoPreco;
  * 
  * @RunWith - Roda os testes dentro do spring. Ele conhece o contexto do spring.
  * @ContextConfiguration - classes que o spring deve utilizar
- * @ActiveProfiles - indica o profile a ser utilizado que no caso utiliza o banco de testes ao invés do banco de desenvolvimento.
+ * @ActiveProfiles - ativa o profile a ser utilizado que no caso utiliza o banco de testes ao invés do banco de desenvolvimento.
  * <br>
  * HISTÓRICO DE DESENVOLVIMENTO: <br>
  * 8 de set de 2018 - @author jorge - Primeira versão da classe. <br>

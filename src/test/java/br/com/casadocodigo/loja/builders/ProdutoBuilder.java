@@ -13,7 +13,7 @@ import br.com.casadocodigo.models.TipoPreco;
  * DOCUMENTAÇÃO DA CLASSE <br>
  * ---------------------- <br>
  * FINALIDADE: <br>
- * TODO Definir documentação da classe. <br>
+ * Classe que constrói produtos utilizado nos testes unitários.
  * <br>
  * HISTÓRICO DE DESENVOLVIMENTO: <br>
  * 8 de set de 2018 - @author jorge - Primeira versão da classe. <br>

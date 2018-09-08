@@ -77,6 +77,7 @@ public class PaymentController {
 
     /** 
      * Método que realiza o envio de um email após a finalização da compra.
+     * 
      */
     private void enviaEmailCompraProduto ( Usuario usuario ) {
 
