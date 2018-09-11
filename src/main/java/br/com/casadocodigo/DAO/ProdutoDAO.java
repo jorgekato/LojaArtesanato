@@ -48,9 +48,24 @@ public class ProdutoDAO {
     public void gravar ( Produto produto ) {
         em.persist( produto );
     }
-
-    public List < Produto > find () {
+    
+    
+    /**
+     * Método que retorna todos os produtos e preços. 
+     * (Lazy) - os preços só serão buscados no banco, quando houver necessidade em utilizá-los, 
+     * mas deve haver uma transação aberta. 
+     * Para obter os preços utilizando este método, pode ser obtido inserindo um 
+     * filtro( OpenEntityManagerInViewFilter() ) na classe ServletSpringMVC.
+     */
+    /*public List < Produto > find () {
         return em.createQuery( "select p from Produto p" , Produto.class ).getResultList();
+    }*/
+    
+    /**
+     * Método que retorna todos os produtos e seus preços 
+     */
+    public List < Produto > find () {
+        return em.createQuery( "select distinct(p) from Produto p join fetch p.precos" , Produto.class ).getResultList();
     }
 
     /**
