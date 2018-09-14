@@ -47,6 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.antMatchers( "/carrinho/**" ).permitAll()
 //		.antMatchers( "/pagamento/**" ).permitAll()
 		.antMatchers( "/resources/**" ).permitAll()
+		.antMatchers( "/url-magica-maluca-faldfakjgdal34tldt4ef3fvnw62" ).permitAll()
 		.antMatchers( HttpMethod.POST, "/produtos" ).hasRole( "ADMIN" )
 		.antMatchers( HttpMethod.GET, "/produtos" ).hasRole( "ADMIN" )
 		.antMatchers( "/produtos/**" ).permitAll()	//permite acesso a todas as view que não estejam bloqueadas.
