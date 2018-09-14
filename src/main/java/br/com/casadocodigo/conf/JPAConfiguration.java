@@ -39,32 +39,34 @@ public class JPAConfiguration {
     /**
      * 
      * Método responsável por configurar a base de dados a ser utilizado.
-     * @param dataSource 
+     * 
+     * @param dataSource
      * @return
      */
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean (DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean ( DataSource dataSource , Properties additionalProperties ) {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        
+
         factoryBean.setJpaVendorAdapter( vendorAdapter );
-        
+
         factoryBean.setDataSource( dataSource );
-        
-        factoryBean.setJpaProperties( props() );
-        
+
+        factoryBean.setJpaProperties( additionalProperties );
+
         factoryBean.setPackagesToScan( "br.com.casadocodigo.models" );
-        
+
         return factoryBean;
     }
 
-
-    /** 
+    /**
      * Método que informa as propriedades de configuração do hibernate
+     * 
      * @return
      */
     @Bean
-    private Properties props () {
+    @Profile ( "dev" )
+    private Properties additionalProperties () {
         Properties props = new Properties();
         props.setProperty( "hibernate.dialect" , "org.hibernate.dialect.MySQL5InnoDBDialect" );
         props.setProperty( "hibernate.show_sql" , "true" );
@@ -72,13 +74,13 @@ public class JPAConfiguration {
         return props;
     }
 
-
-    /** 
+    /**
      * TODO Descrição do Método
+     * 
      * @return
      */
     @Bean
-    @Profile("dev")
+    @Profile ( "dev" )
     private DataSource dataSource () {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUsername( "root" );
@@ -87,10 +89,9 @@ public class JPAConfiguration {
         dataSource.setDriverClassName( "com.mysql.jdbc.Driver" );
         return dataSource;
     }
-    
-    
+
     @Bean
-    public JpaTransactionManager transactionManager( EntityManagerFactory emf ) {
+    public JpaTransactionManager transactionManager ( EntityManagerFactory emf ) {
         return new JpaTransactionManager( emf );
     }
 }
