@@ -2,6 +2,7 @@ package br.com.casadocodigo.controller;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -131,6 +133,18 @@ public class ProductsController {
         
         return modelAndView;
     }
+
+    /**
+     * 
+     * Método que captura uma exceção no controller.
+     * @ExceptionHandler(NoResultException.class) - capta a exceção que está no parametro.Ex: ClassNotFound ou NoResultException ou o mais genérico Exception.
+     * @return - redireciona para a view error.jsp
+     */
+//    @ExceptionHandler(NoResultException.class)
+//    public String trataDetalheNaoEncontrado () {
+//        return "error";
+//    }
+    
     
     /**
      * @ResponseBody - Utiliza a dependencia do Jackson para resolver o problema para converter para json.

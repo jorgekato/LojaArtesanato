@@ -7,15 +7,18 @@
  */
 package br.com.casadocodigo.DAO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.casadocodigo.models.Produto;
+import br.com.casadocodigo.models.TipoPreco;
 
 /**
  * DOCUMENTAÇÃO DA CLASSE <br>
@@ -45,9 +48,24 @@ public class ProdutoDAO {
     public void gravar ( Produto produto ) {
         em.persist( produto );
     }
-
-    public List < Produto > find () {
+    
+    
+    /**
+     * Método que retorna todos os produtos e preços. 
+     * (Lazy) - os preços só serão buscados no banco, quando houver necessidade em utilizá-los, 
+     * mas deve haver uma transação aberta. 
+     * Para obter os preços utilizando este método, pode ser obtido inserindo um 
+     * filtro( OpenEntityManagerInViewFilter() ) na classe ServletSpringMVC.
+     */
+    /*public List < Produto > find () {
         return em.createQuery( "select p from Produto p" , Produto.class ).getResultList();
+    }*/
+    
+    /**
+     * Método que retorna todos os produtos e seus preços 
+     */
+    public List < Produto > find () {
+        return em.createQuery( "select distinct(p) from Produto p join fetch p.precos" , Produto.class ).getResultList();
     }
 
     /**
@@ -73,5 +91,16 @@ public class ProdutoDAO {
 		return em.createQuery( "select distinct(p) from Produto p where p.id = :id" , Produto.class )
                 .setParameter( "id" , id )
                 .getSingleResult();
+	}
+	
+	public BigDecimal somaPrecoPorTipo( TipoPreco tipoPreco ) {
+		TypedQuery<BigDecimal> query = em.createQuery(
+				"select sum( preco.valor ) from Produto p " + "join p.precos preco where preco.tipo = :tipoPreco",
+				BigDecimal.class );
+		query.setParameter( "tipoPreco", tipoPreco );
+
+		return query.getSingleResult();
+		
+		
 	}
 }
