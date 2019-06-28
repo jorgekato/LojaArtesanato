@@ -53,6 +53,14 @@ public class UsuarioDAO implements UserDetailsService {
 		return usuarios.get( 0 );
 	}
 
+    /** 
+     * TODO Descrição do Método
+     */
+    public void gravar (Usuario usuario) {
+
+        em.persist(usuario);
+    }
+
 	/**
 	 * Método da interface UserDetailsService que foi sobrescrito acima.
 	 */

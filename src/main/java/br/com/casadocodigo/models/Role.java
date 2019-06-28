@@ -30,7 +30,21 @@ public class Role implements GrantedAuthority {
 	@Id
 	private String nome;
 
-	/**
+	/** 
+     * TODO Construtor padrão da classe
+     */
+    public Role () {
+    }
+	
+    /** 
+     * TODO Construtor alternativo da classe
+     * @param string
+     */
+    public Role ( String nome ) {
+        this.nome = nome;
+    }
+
+    /**
 	 * Método de recuperação do campo nome
 	 *
 	 * @return valor do campo nome
